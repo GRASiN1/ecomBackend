@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+</head>
+
+<body>
+    <form action="/user/signup" method="post">
+        <input type="email" name="email" placeholder="xyz@example.com">
+        <input type="text" name="password" placeholder="password">
+        <button type="submit">SignUp</button>
+    </form>
+    <button onclick="redirectToLogIn()">Log In</button>
+
+    <script>
+        function redirectToLogIn() {
+            window.location.href = "/user/login";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+    <div>
+        <% if (locals.products) { %>
+            <div>
+                <form action="/cart" method="post">
+                    <% products.forEach( (product, index)=> { %>
+                        <label for=<% product.productName %>>
+                            <div>
+                                <p>
+                                    <%= index + 1 %>
+                                </p>
+                                <p>
+                                    <%= product.productName %>
+                                </p>
+                                <p>
+                                    <%= product.productDescription %>
+                                </p>
+                                <p>
+                                    <%= product.productPrice %>
+                                </p>
+                            </div>
+                        </label>
+                        <input type="radio" name="selectedProduct" value="<%= JSON.stringify(product) %>" />
+                        <% }) %>
+                            <button type="submit">Buy</button>
+                </form>
+            </div>
+            <% } %>
+    </div>
+</body>
+
+</html>

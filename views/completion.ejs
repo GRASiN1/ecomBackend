@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completion</title>
+</head>
+
+<body>
+    <h1>Order Successfull</h1>
+    <div>
+        <h3>Delivery Details</h3>
+        <% if (locals.address) { %>
+            <div>
+                <div>
+                    <p>
+                        <%= address.address.fullName %>
+                    </p>
+                    <p>
+                        <%= address.address.fullAddress %>
+                    </p>
+                    <p>
+                        <%= address.address.phoneNumber %>
+                    </p>
+                    <p>
+                        <%= address.address.pincode %>
+                    </p>
+                </div>
+            </div>
+            <% } %>
+    </div>
+    <div>
+        <h3>Product details</h3>
+        <% if (locals.product) { %>
+            <div>
+                <div>
+                    <p>
+                        <%= product.product.productName %>
+                    </p>
+                    <p>
+                        <%= product.product.productDescription %>
+                    </p>
+                    <p>
+                        <%= product.product.productPrice %>
+                    </p>
+                </div>
+            </div>
+            <% } %>
+    </div>
+</body>
+
+</html>
