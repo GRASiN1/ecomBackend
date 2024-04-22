@@ -5,6 +5,7 @@ const Address = require('../models/address');
 const { handleCartItem, handleAddressSelect } = require('../controller/order');
 const { getAddress } = require('../services/address');
 const { getProduct } = require('../services/product');
+const { checkProductInCart, checkAddressSelected } = require('../middlewere/auth');
 
 const router = express.Router();
 
@@ -13,12 +14,12 @@ router.get('/', async (req, res) => {
     res.render('home', { products: products });
 });
 
-router.get('/address', async (req, res) => {
+router.get('/address', checkProductInCart, async (req, res) => {
     const addresses = await Address.find({ addressOwner: req.user._id });
     return res.render('address', { addresses: addresses });
 });
 
-router.get('/completion', (req, res) => {
+router.get('/completion', checkAddressSelected, (req, res) => {
     const addressCookie = req.cookies?.address;
     const productCookie = req.cookies?.product;
     const address = getAddress(addressCookie);
@@ -29,9 +30,7 @@ router.get('/completion', (req, res) => {
 })
 
 router.post('/address', handleAddAddress);
-
-router.post('/cart', handleCartItem);
-
+router.post('/cart/:id', handleCartItem);
 router.post('/select', handleAddressSelect);
 
 module.exports = router;

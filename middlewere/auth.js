@@ -16,8 +16,6 @@ async function restrictToLoggedInUserOnly(req, res, next) {
     return next();
 }
 
-
-
 async function checkAuth(req, res, next) {
     const token = req.cookies?.token;
     const user = getUser(token)?.user;
@@ -25,7 +23,21 @@ async function checkAuth(req, res, next) {
     next();
 }
 
+async function checkProductInCart(req, res, next) {
+    const product = req.cookies?.product;
+    if (!product) return res.redirect('/');
+    next();
+}
+async function checkAddressSelected(req, res, next) {
+    const address = req.cookies?.address;
+    const product = req.cookies?.product;
+    if (!address && !product) return res.redirect('/address');
+    next();
+}
+
 module.exports = {
     restrictToLoggedInUserOnly,
-    checkAuth
+    checkAuth,
+    checkProductInCart,
+    checkAddressSelected,
 }

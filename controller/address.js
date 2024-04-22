@@ -1,7 +1,8 @@
 const Address = require('../models/address');
 
 async function handleAddAddress(req, res) {
-    const { fullName, fullAddress, phoneNumber, pincode } = req.body;
+    const { fullName, fullAddress, phoneNumber } = req.body;
+    const pincode = parseInt(req.body.pincode);
     await Address.create({
         fullName,
         fullAddress,

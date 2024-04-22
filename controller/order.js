@@ -1,8 +1,10 @@
 const { setProduct } = require('../services/product');
 const { setAddress } = require('../services/address');
+const Product = require('../models/products');
 
 async function handleCartItem(req, res) {
-    const selectedProduct = JSON.parse(req.body.selectedProduct);
+    const productId = req.params.id;
+    const selectedProduct = await Product.findOne({ _id: productId });
     const productCookie = setProduct(selectedProduct);
     res.cookie('product', productCookie);
     return res.redirect('/address');

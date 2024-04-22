@@ -1,0 +1,37 @@
+<% if(locals.product){ %>
+    <div class="card" style="width: 18rem;">
+        <img src="<%- product.productImageURL %>" class="card-img-top" alt="productImage">
+        <div class="card-body">
+            <h5 class="card-title">
+                <%= product.productName %>
+            </h5>
+            <p class="card-text">
+                <%= product.productDescription %>
+            </p>
+            <p class="card-text">
+                <%= product.productPrice %>
+            </p>
+            <button class="btn btn-primary" onclick="buyArticle('<%= product._id %>')">Buy</button>
+        </div>
+    </div>
+    <% } %>
+        <script>
+            async function buyArticle(productId) {
+                try {
+                    const response = await fetch(`/cart/${productId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        window.location.href = '/address'
+                    } else {
+                        console.error('Failed to cart the item:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        </script>
