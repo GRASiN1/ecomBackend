@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// address schema
 const addressSchema = new mongoose.Schema({
     fullName: {
         type: String,

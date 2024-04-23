@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const { setUser } = require('../services/auth');
 
+// function that registers new user in database
 async function handleCreateUser(req, res) {
     const { email, password } = req.body;
     await User.create({
@@ -10,7 +11,7 @@ async function handleCreateUser(req, res) {
     return res.redirect('/user/login');
 }
 
-
+// function that checks for valid user details and let them log in
 async function handleLoginUser(req, res) {
     const { email, password } = req.body;
     const user = await User.findOne({ email });

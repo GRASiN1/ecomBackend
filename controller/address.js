@@ -1,5 +1,6 @@
 const Address = require('../models/address');
 
+// function that add new address in database;
 async function handleAddAddress(req, res) {
     const { fullName, fullAddress, phoneNumber } = req.body;
     const pincode = parseInt(req.body.pincode);
