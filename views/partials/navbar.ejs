@@ -1,8 +1,25 @@
 <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="/images/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
             DigiEcom
         </a>
+        <div>
+            <% if(user==='admin' ){ %>
+                <button type="button" class="btn btn-outline-primary" onclick="redirectToAddProductRoute()">Add
+                    Product</button>
+                <% } %>
+                    <button type="button" class="btn btn-outline-primary"
+                        onclick="redirectToCookieRoute()">LOGOUT</button>
+        </div>
     </div>
 </nav>
+
+<script>
+    function redirectToAddProductRoute() {
+        window.location.href = '/addProduct';
+    }
+    function redirectToCookieRoute() {
+        window.location.href = '/user/logout'
+    }
+</script>

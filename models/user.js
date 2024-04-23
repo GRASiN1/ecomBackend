@@ -9,6 +9,11 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
+    },
+    ordersPlaced: [{ order: { type: mongoose.Schema.Types.ObjectId, ref: 'order' } }],
+    role: {
+        type: String,
+        default: 'normal',
     }
 }, { timestamps: true });
 

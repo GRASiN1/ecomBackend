@@ -11,5 +11,9 @@ router.get('/login', (req, res) => {
 })
 router.post('/signup', handleCreateUser);
 router.post('/login', handleLoginUser);
+router.get('/logout', (req, res) => {
+    res.clearCookie('token');
+    return res.redirect('/');
+});
 
 module.exports = router;

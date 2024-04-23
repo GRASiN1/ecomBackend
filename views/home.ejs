@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <%- include('./partials/navbar') %>
+    <%- include('./partials/navbar', {user: user}) %>
         <% if (locals.products) { %>
             <div class="container mt-3">
                 <div class="row">

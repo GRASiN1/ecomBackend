@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <%- include('./partials/navbar') %>
+    <%- include('./partials/navbar', {user: user}) %>
         <div class="alert alert-success" role="alert">
             <h1>Order Successfull</h1>
             <button type="button" class="btn btn-outline-primary" onclick="gotBackToHomePage()">Go Back To Home
