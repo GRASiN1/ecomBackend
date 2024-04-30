@@ -1,6 +1,6 @@
 <% if(locals.product){ %>
-    <div class="card" style="width: 18rem;">
-        <img src="<%- product.productImageURL %>" class="card-img-top" alt="productImage">
+    <div class="card" style="width: 18rem; height: 35rem;">
+        <img src="<%- product.productImageURL %>" class="card-img-top" style="height: 20rem;" alt="productImage">
         <div class="card-body">
             <h5 class="card-title">
                 <%= product.productName %>
@@ -11,7 +11,11 @@
             <p class="card-text">
                 $ <%= product.productPrice %>
             </p>
-            <button class="btn btn-primary" onclick="buyArticle('<%= product._id %>')">Buy</button>
+            <% if(user==='admin' ) { %>
+                <button class="btn btn-primary" onclick="EditArticle('<%= product._id %>')">Edit</button>
+                <% } else { %>
+                    <button class="btn btn-primary" onclick="buyArticle('<%= product._id %>')">Buy</button>
+                    <% } %>
         </div>
     </div>
     <% } %>
@@ -33,5 +37,8 @@
                 } catch (error) {
                     console.error('Error:', error);
                 }
+            }
+            async function EditArticle(productId) {
+                window.location.href = '/edit/' + productId;
             }
         </script>

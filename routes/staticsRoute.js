@@ -8,7 +8,7 @@ const { getProduct } = require('../services/product');
 const { checkProductInCart, checkAddressSelected } = require('../middlewere/auth');
 const Order = require('../models/order');
 const User = require('../models/user');
-const { handleAddProduct } = require('../controller/product');
+const { handleAddProduct, handleEditProduct } = require('../controller/product');
 
 const router = express.Router();
 
@@ -56,10 +56,18 @@ router.get('/completion', checkAddressSelected, async (req, res) => {
     return res.render('completion', { address: address, product: product, user: req.user.role });
 });
 
+router.get('/edit/:id', async (req, res) => {
+    const id = req.params.id;
+    const productToBeEdited = await Product.findById({ _id: id });
+    return res.render('editProduct', { product: productToBeEdited, user: req.user.role });
+})
+
 // router that handle new address being added
 router.post('/address', handleAddAddress);
 // router that handle items being added in cart
 router.post('/cart/:id', handleCartItem);
+// router that handle product updation
+router.post('/edit/:id', handleEditProduct);
 // router that handle selection of delivery address
 router.post('/select', handleAddressSelect);
 //router that handle product addition in database
