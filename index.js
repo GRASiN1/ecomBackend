@@ -1,7 +1,6 @@
 //imports
 const express = require('express');
 const connectDB = require('./connection');
-const User = require('./models/user');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const userRouter = require('./routes/user');
@@ -23,7 +22,7 @@ app.set('views', path.resolve('./views'));
 app.use(express.json()); // to read json data from body
 app.use(express.urlencoded({ extended: false })); // to read form data from body
 app.use(cookieParser());// to work with cookies
-app.use(express.static(path.join(__dirname, 'public'))); // to server static file using nodejs
+app.use(express.static(path.join(__dirname, 'public'))); // to serve static file using nodejs
 app.use('/', restrictToLoggedInUserOnly, staticRouter); // main router
 app.use('/user', userRouter); // user creation route
 
